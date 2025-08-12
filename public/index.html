@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Clientes, Transacciones y Facturas</title>
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <h2>Customers</h2>
+    <form id="form-customer">
+      <input type="number" id="identification_number" placeholder="Identification number" required>
+      <input type="text" id="customer_name" placeholder="Name" required>
+      <input type="text" id="address" placeholder="Address" required>
+      <input type="number" id="phone" placeholder="Phone" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <button type="submit">Create client</button>
+    </form>
+    <form id="form-actualizar-customer" style="display: none;">
+      <input type="hidden" id="customer-id">
+      <input type="number" id="identification_number-actualizar" placeholder="Identification numbern">
+      <input type="text" id="customer_name-actualizar" placeholder="Name">
+      <input type="text" id="address-actualizar" placeholder="Address">
+      <input type="number" id="phone-actualizar" placeholder="Phone">
+      <input type="email" id="email-actualizar" placeholder="Email">
+      <button type="submit">Update Client</button>
+    </form>
+    <div id="lista-customers"></div>
+>
+    <h2>Transactions</h2>
+    <form id="form-transaction">
+      <select id="customer_id" required>
+        <option value="">Select a client</option>
+      </select>
+      <input type="datetime-local" id="date_and_time" required>
+      <input type="number" id="transaction_amount" placeholder="amount" required>
+      <input type="text" id="transaction_status" placeholder="status (ej. complete)" required>
+      <input type="text" id="transaction_type" placeholder="Type (ej. buy)" required>
+      <button type="submit">Create Transaction</button>
+    </form>
+    <form id="form-actualizar-transaction" style="display: none;">
+      <input type="hidden" id="transaction-id">
+      <select id="customer_id-actualizar">
+        <option value="">Select a client</option>
+      </select>
+      <input type="datetime-local" id="date_and_time-actualizar">
+      <input type="number" id="transaction_amount-actualizar" placeholder="amount">
+      <input type="text" id="transaction_status-actualizar" placeholder="status">
+      <input type="text" id="transaction_type-actualizar" placeholder="Type">
+      <button type="submit">Update Transaction</button>
+    </form>
+    <div id="lista-transactions"></div>
+
+    <h2>Invoices</h2>
+    <form id="form-invoice">
+      <input type="text" id="platform_used" placeholder="platform (ej. nequi)" required>
+      <input type="text" id="invoice_number" placeholder="Invoice Number" required>
+      <select id="transaction_id" required>
+        <option value="">Select a transaction</option>
+      </select>
+      <input type="date" id="invoice_period" required>
+      <input type="number" id="invoiced_amount" placeholder="Billed Amount" required>
+      <input type="number" id="amount_paid" placeholder="Amount Paid" required>
+      <button type="submit">Create Invoice</button>
+    </form>
+    <form id="form-actualizar-invoice" style="display: none;">
+      <input type="hidden" id="invoice-id">
+      <input type="text" id="platform_used-actualizar" placeholder="platform">
+      <input type="text" id="invoice_number-actualizar" placeholder="Invoice Number">
+      <select id="transaction_id-actualizar">
+        <option value="">select a invoice</option>
+      </select>
+      <input type="date" id="invoice_period-actualizar">
+      <input type="number" id="invoiced_amount-actualizar" placeholder="Billed Amount">
+      <input type="number" id="amount_paid-actualizar" placeholder="Amount Paid">
+      <button type="submit">update invoices</button>
+    </form>
+    <div id="lista-invoices"></div>
+
+    <!-- Sección: Carga de CSVs -->
+    <h2>CSVs upload</h2>
+    <form id="form-csv">
+      <select id="tabla" required>
+        <option value="customers">Customers</option>
+        <option value="transactions">transactions</option>
+        <option value="invoices">invoices</option>
+      </select>
+      <input type="text" id="mapeo" placeholder='Mapeo (JSON, ej: {"name": "customer_name", "correo": "email"})'>
+      <input type="file" id="csvFiles" accept=".csv" multiple required>
+      <button type="submit">upload CSVs</button>
+    </form>
+    <div id="resultado-csv"></div>
+  </div>
+
+  <script src="/scripts.js"></script>
+</body>
+</html>
